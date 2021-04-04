@@ -1,5 +1,58 @@
 <html>
 
-<
+<head>
+	<style>
+
+		body {
+		background-color: black;
+		color: white;
+		}
+
+		h1 {
+		color: red;
+		text-align: center;
+		font-family: sans-serif;		
+		}
+
+		p {
+		color: white;
+		}
+	</style>
+
+
+	<script>
+		function save(){
+			x = document.getElementById("first").value;
+			document.getElementById("mutable").innerHTML = x;
+		}
+		function create(){
+			var y = document.getElementById("second").value;
+			var para = document.createElement("P");               // Create a <p> element
+			para.innerText = y;               // Insert text
+			document.body.appendChild(para);    
+		}
+	</script>
+</head>
+<body>
+	<h1> Space Lutt</h1>
+	<p> Just your average joe living your average everyday life.</p>
+	
+	<h2> 
+		Text Changer
+	</h2>
+
+	<input id="first"> First input box </input> 
+	<button onclick="save()"> Save </button>
+	<p id="mutable"> This text is mutable </p>
+
+	<h2>
+		Create Element
+	</h2>
+	<input id="second"> First input box </input> 
+	<button onclick="create()"> Create </button>
+	<p> Text <i>should</i> be created beneath this. </p>
+
+	
+</body>
 
 </html>
