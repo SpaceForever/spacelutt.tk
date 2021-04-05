@@ -1,0 +1,183 @@
+<!-- Goal: make a bookmarklet that can save the link to file-->
+<!-- Things to improve: make there be no empty pages when you delete stuff from queue.
+    
+    make the UI better. 
+    
+    Check if  roam works for it. 
+
+Make it easier to add tabs to it with bookmarklet
+
+Add email capabilities (read & write)
+
+
+Links:
+    https://javascript.info/localstorage
+
+    https://blog.logrocket.com/localstorage-javascript-complete-guide/#getitem
+
+    https://www.w3docs.com/snippets/javascript/how-to-randomize-shuffle-a-javascript-array.html
+
+    https://www.scrapersnbots.com/blog/code/how-to-create-javascript-bookmarklet.php
+
+-->
+
+<html>
+
+    <head>
+        <style>
+          
+            .randomSite{
+                /* width: 500; */
+                display: inline-block;
+                /* margin-right: auto; */
+            }
+
+            .notes{
+                /* width: 500; */
+                display: inline-block;
+                /* margin-left: auto; */
+            }
+
+            iframe{
+                width: 700;
+                height: 700;
+            }
+
+            body{
+                background-color:cornflowerblue;
+            }
+
+            p {
+                color: white;
+                font-size: large;
+                font-family: sans-serif;
+            }
+
+            button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 8px;
+            }
+
+            /* button:hover {
+            background-color: #598659;
+            color: white;
+            } */
+
+            button:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <input type="text" id="savelink" value="https://incrium.com"> <button id="saveLinkButton" onclick="saveLink()" > <———Save Link To Queue</button> 
+
+
+        <p>Current Page: <input type="text" id="currentpage" value="http://example.com"> </p>
+
+        <button onclick="learn()" width=100 height=100 bg='blue'> LEARN </button>
+        <!-- <button onclick="showWebpage()" >Show webpage</button> -->
+        <button onclick="deleteLink()">Delete Link from Queue</button>
+
+    
+        <br>
+
+        <p>.</p>
+
+        
+
+      
+
+
+        
+        <div class="randomSite">
+            <iframe src="http://example.com" id="serverurl"></iframe>
+        </div>
+        
+        <div class="notes">
+            </div><iframe src="https://anotepad.com" id="notes"></iframe>
+        </div>
+
+
+        
+
+        <p> <b> Other Buttons </b> </p>
+
+        <button onclick="clearStorage()">Clear Storage</button>
+        <button onclick="test()"> Test Stuff </button>
+
+        <p id="values"> hello </p>
+        <p id="testp"> change me </p>
+
+
+
+       
+
+
+        <script>
+
+        function test() {
+            // for(let i=0; i<localStorage.length; i++) {
+            //     let key = localStorage.key(i);
+            //     alert(`${key}: ${localStorage.getItem(key)}`);
+            // }
+
+
+            var link = window.location;
+            url = "file:///C:/Users/space/OneDrive/AutoHotkey/TypeScript/savetofile.html";
+            window.open(url, '_blank');
+            document.getElementById("savelink").value = link;
+            // alert(link)
+        }
+
+
+
+        function saveLink(){
+            var link = document.getElementById("savelink").value;
+
+            
+            localStorage.setItem(link, localStorage.length + 1);
+            document.getElementById("testp").innerHTML = ('Your link ' + link + ' is saved at position ' + localStorage.length); 
+            document.getElementById("values").innerHTML = window.localStorage.key(localStorage.length - 1);
+            document.getElementById("saveLinkButton").innerHTML = "Saved!"
+            document.getElementById("savelink").value = ''
+            
+            
+        }
+
+        function deleteLink(){
+            localStorage.removeItem(document.getElementById("currentpage").value);
+            alert(document.getElementById("currentpage").value + ' deleted from queue');
+            document.getElementById("currentpage").value = ''
+        }
+
+        function clearStorage(){
+            localStorage.clear()
+            alert('local storage cleared')
+        }
+
+        function learn(){
+            random = Math.floor((Math.random() * localStorage.length) + 1); // Picks a random one from the file
+            var currentLink = window.localStorage.key(random);
+            document.getElementById("currentpage").value = currentLink
+            document.getElementById("serverurl").src = currentLink
+
+            // for(let i=0; i<localStorage.length; i++) {
+            //     let key = localStorage.key(i);
+            //     alert(`${key}: ${localStorage.getItem(key)}`);
+            // }
+        }
+
+
+        </script>
+
+    </body>
+</html>
