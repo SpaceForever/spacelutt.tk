@@ -4,7 +4,7 @@
 	<style>
 
 		body {
-		background-color: black;
+		background-color: #111111;
 		color: white;
 		}
 
@@ -25,18 +25,63 @@
 			x = document.getElementById("first").value;
 			document.getElementById("mutable").innerHTML = x;
 		}
+
+			
 		function create(){
 			var y = document.getElementById("second").value;
 			var para = document.createElement("P");               // Create a <p> element
 			para.innerText = y;               // Insert text
-			document.body.appendChild(para);    
+			document.getElementById("creation").appendChild(para);    
 		}
+
+		function addElement(whatToAdd, addingLocation){
+			newPara = document.createElement("P");
+			newPara.innerText = whatToAdd;
+			document.getElementById(addingLocation).appandChild(newPara);
+			alert(document.getElementById(addingLocation).innerHTML);
+			return true;
+
+		}
+
+		function storeSleepTime(){
+			sleepTime = document.getElementById("sleepTime").value;
+			sleepyDiv = document.getElementById("sleepyDiv");
+			addElement(sleepTime, sleepyDiv);
+		}
+
+		function docwrite(){
+			document.write("kwame is cool");
+			document.write("hello");
+		}
+
+
+		function loopicecream(){
+			var creams = 5;
+			while (creams > 0){
+				document.write("You have " + creams + " ice creams <br>");
+				creams = creams - 1
+			}
+			document.write("You have no ice creams")
+		}
+
+		function writeToBody(text){
+			var para = document.createElement("P");
+			para.innerText = text;
+			document.getElementById("output").appendChild(para)
+		}
+
+		function outTest(){
+			x = document.getElementByID("outputTest").value;
+			writeToBody(x);
+		}
+
+		
 	</script>
 </head>
 <body>
 	<h1> Space Lutt</h1>
-	<p> Just your average joe living your average everyday life.</p>
-	
+	<p> For the glory of coding, JS is mine to command.</p>
+	<a href="https://chrislakin.com/stoicism"> Stoicism </a>
 	<h2> 
 		Text Changer
 	</h2>
@@ -45,14 +90,45 @@
 	<button onclick="save()"> Save </button>
 	<p id="mutable"> This text is mutable </p>
 
-	<h2>
-		Create Element
-	</h2>
-	<input id="second"> First input box </input> 
-	<button onclick="create()"> Create </button>
-	<p> Text <i>should</i> be created beneath this. </p>
+	<div id="creation">
+		<h2>
+			Create Element
+		</h2>
+		<input id="second"> Second input box </input> 
+		<button onclick="create()"> Create </button>
+		<p> Text <i>should</i> be created beneath this. </p>
+	</div>
+	
+	<div id="sleepy">
+
+		<h2> Sleep Keeper </h2>
+	
+		<input id="sleepTime"> Third input box </input>
+		<button onclick="storeSleepTime()"> Store </button>
+		<p> Write your sleep time there to SAVE it. </p>
+	</div>
+
+	<h2> Document Writing </h2>
+	
+	<button onclick="docwrite()"> Write to doc </button>
+
+	<button onclick="loopicecream()"> Loop ice cream </button>
 
 	
+	
+	
+	<div id="output">
+
+		<h2> Output Div </h2>
+	
+		<input id="outputTest"> Write this out </input>
+
+		<button onclick="outTest()"> Write outPutTest to body </button>
+		
+		<button onclick="writeToBody()"> Write to body </button>
+	
+
+	</div>
 </body>
 
 </html>
